@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Checkout\Model\CompositeConfigProvider">
+        <arguments>
+            <argument name="configProviders" xsi:type="array">
+                <item name="asiabill_card_config_provider" xsi:type="object">Asiabill\Payment\Model\Ui\Card</item>
+                <item name="asiabill_alipay_config_provider" xsi:type="object">Asiabill\Payment\Model\Ui\Alipay</item>
+                <item name="asiabill_wechat_config_provider" xsi:type="object">Asiabill\Payment\Model\Ui\Wechat</item>
+                <item name="asiabill_crypto_config_provider" xsi:type="object">Asiabill\Payment\Model\Ui\Crypto</item>
+                <item name="asiabill_directpay_config_provider" xsi:type="object">Asiabill\Payment\Model\Ui\Directpay</item>
+                <item name="asiabill_ebanx_config_provider" xsi:type="object">Asiabill\Payment\Model\Ui\Ebanx</item>
+                <item name="asiabill_giropay_config_provider" xsi:type="object">Asiabill\Payment\Model\Ui\Giropay</item>
+                <item name="asiabill_ideal_config_provider" xsi:type="object">Asiabill\Payment\Model\Ui\Ideal</item>
+                <item name="asiabill_p24_config_provider" xsi:type="object">Asiabill\Payment\Model\Ui\P24</item>
+                <item name="asiabill_paysafecard_config_provider" xsi:type="object">Asiabill\Payment\Model\Ui\Paysafecard</item>
+                <item name="asiabill_koreacard_config_provider" xsi:type="object">Asiabill\Payment\Model\Ui\Koreacard</item>
+                <item name="asiabill_kakaopay_config_provider" xsi:type="object">Asiabill\Payment\Model\Ui\Kakaopay</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

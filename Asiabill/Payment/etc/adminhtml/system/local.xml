@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
+    <group id="local_payments" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+        <label>Local Payments</label>
+        <include path="Asiabill_Payment::system/local/crypto.xml"/>
+        <include path="Asiabill_Payment::system/local/directpay.xml"/>
+        <include path="Asiabill_Payment::system/local/ebanx.xml"/>
+        <include path="Asiabill_Payment::system/local/giropay.xml"/>
+        <include path="Asiabill_Payment::system/local/ideal.xml"/>
+        <include path="Asiabill_Payment::system/local/p24.xml"/>
+        <include path="Asiabill_Payment::system/local/paysafecard.xml"/>
+        <include path="Asiabill_Payment::system/local/koreacard.xml"/>
+        <include path="Asiabill_Payment::system/local/kakaopay.xml"/>
+    </group>
+</include>

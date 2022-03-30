@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <asiabill_card>
+                <asiabill_mode>0</asiabill_mode>
+                <is_log>no</is_log>
+                <webhook>1</webhook>
+                <init_order_status>pending</init_order_status>
+                <success_order_status>processing</success_order_status>
+                <failure_order_status>canceled</failure_order_status>
+                <pending_order_status>holded</pending_order_status>
+                <test_mer_no>12246</test_mer_no>
+                <test_gateway_no>12246002</test_gateway_no>
+                <test_sign_key>12H4567r</test_sign_key>
+
+                <active>0</active>
+                <payment_action>authorize</payment_action>
+                <title>Credit Card</title>
+                <model>Asiabill\Payment\Model\Method\Card</model>
+                <checkout_model>0</checkout_model>
+                <save_card>0</save_card>
+                <elements_style>1</elements_style>
+                <sort_order>1</sort_order>
+                <card_icons>visa_card,master_card</card_icons>
+                <allowspecific>0</allowspecific>
+            </asiabill_card>
+
+            <asiabill_alipay>
+                <active>0</active>
+                <title>Ali pay</title>
+                <model>Asiabill\Payment\Model\Method\Alipay</model>
+                <sort_order>2</sort_order>
+                <allowspecific>0</allowspecific>
+            </asiabill_alipay>
+
+            <asiabill_wechat>
+                <active>0</active>
+                <title>Wechat</title>
+                <model>Asiabill\Payment\Model\Method\Wechat</model>
+                <sort_order>3</sort_order>
+                <allowspecific>0</allowspecific>
+            </asiabill_wechat>
+
+            <asiabill_crypto>
+                <active>0</active>
+                <title>Crypto currency</title>
+                <model>Asiabill\Payment\Model\Method\Crypto</model>
+                <sort_order>4</sort_order>
+                <allowspecific>0</allowspecific>
+            </asiabill_crypto>
+
+            <asiabill_directpay>
+                <active>0</active>
+                <title>Direct pay</title>
+                <model>Asiabill\Payment\Model\Method\Directpay</model>
+                <sort_order>5</sort_order>
+                <allowspecific>0</allowspecific>
+            </asiabill_directpay>
+
+            <asiabill_ebanx>
+                <active>0</active>
+                <title>Ebanx</title>
+                <model>Asiabill\Payment\Model\Method\Ebanx</model>
+                <sort_order>6</sort_order>
+                <allowspecific>0</allowspecific>
+            </asiabill_ebanx>
+
+            <asiabill_giropay>
+                <active>0</active>
+                <title>Giro pay</title>
+                <model>Asiabill\Payment\Model\Method\Giropay</model>
+                <sort_order>7</sort_order>
+                <allowspecific>0</allowspecific>
+            </asiabill_giropay>
+
+            <asiabill_ideal>
+                <active>0</active>
+                <title>Ideal</title>
+                <model>Asiabill\Payment\Model\Method\Ideal</model>
+                <sort_order>8</sort_order>
+                <allowspecific>0</allowspecific>
+            </asiabill_ideal>
+
+            <asiabill_p24>
+                <active>0</active>
+                <title>P24</title>
+                <model>Asiabill\Payment\Model\Method\P24</model>
+                <sort_order>9</sort_order>
+                <allowspecific>0</allowspecific>
+            </asiabill_p24>
+
+            <asiabill_paysafecard>
+                <active>0</active>
+                <title>Paysafe card</title>
+                <model>Asiabill\Payment\Model\Method\Paysafecard</model>
+                <sort_order>10</sort_order>
+                <allowspecific>0</allowspecific>
+            </asiabill_paysafecard>
+
+            <asiabill_koreacard>
+                <active>0</active>
+                <title>Korea card</title>
+                <model>Asiabill\Payment\Model\Method\Koreacard</model>
+                <sort_order>11</sort_order>
+                <allowspecific>0</allowspecific>
+            </asiabill_koreacard>
+
+            <asiabill_kakaopay>
+                <active>0</active>
+                <title>Kakao Pay (Alipay+™ Partner)</title>
+                <model>Asiabill\Payment\Model\Method\Kakaopay</model>
+                <sort_order>12</sort_order>
+                <allowspecific>1</allowspecific>
+                <specificcountry>KR</specificcountry>
+            </asiabill_kakaopay>
+
+        </payment>
+    </default>
+</config>

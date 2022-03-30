@@ -1,0 +1,22 @@
+.asiabill-icon-container .asiabill-icon{
+    vertical-align:bottom
+}
+.asiabill-icon-container.right{
+    float: right;
+}
+#asiabill-card-form{
+    margin: 5px 0;
+}
+#asiabill-card-errors{
+    border: 1px hsla(0,100%,50%,0.5) dashed;
+    padding: 5px 1em;
+    color: #D20;
+    height: auto;
+    margin: 0.5em auto 1em;
+}
+.hide{
+    display: none;
+}
+.asiabill-icon-container img{
+    max-height: 26px;
+}

@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
+    <group id="asiabill_card" translate="label" type="text"  showInDefault="1" showInWebsite="1" showInStore="1">
+        <label>Credit Card Payment</label>
+
+        <field id="active" translate="label" type="select"  showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Enabled</label>
+            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            <config_path>payment/asiabill_card/active</config_path>
+        </field>
+
+        <field id="title" translate="label" type="text"  showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Title</label>
+            <comment>This is the payment method title used at the checkout page</comment>
+            <config_path>payment/asiabill_card/title</config_path>
+        </field>
+
+        <field id="checkout_model" translate="label" type="select"  showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Checkout Model</label>
+            <source_model>Asiabill\Payment\Model\Option\CheckoutModel</source_model>
+            <config_path>payment/asiabill_card/checkout_model</config_path>
+        </field>
+
+        <field id="elements_style" translate="label" type="select"  showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Elements Style</label>
+            <source_model>Asiabill\Payment\Model\Option\ElementsStyle</source_model>
+            <config_path>payment/asiabill_card/elements_style</config_path>
+            <depends>
+                <field id="checkout_model" separator=",">0</field>
+            </depends>
+        </field>
+
+
+        <field id="mer_no" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Mer No</label>
+            <config_path>payment/asiabill_card/mer_no</config_path>
+        </field>
+
+        <field id="gateway_no" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Gateway No</label>
+            <config_path>payment/asiabill_card/gateway_no</config_path>
+        </field>
+
+        <field id="sign_key" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Sign Key</label>
+            <config_path>payment/asiabill_card/sign_key</config_path>
+        </field>
+
+        <field id="card_icons" translate="label" type="multiselect"  showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Select Card Icons</label>
+            <comment>Should we display card icons next to the title of the payment method?</comment>
+            <source_model>Asiabill\Payment\Model\Option\CardIcons</source_model>
+            <config_path>payment/asiabill_card/card_icons</config_path>
+        </field>
+
+        <field id="allowspecific" translate="label" type="allowspecific" showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Payment from Applicable Countries</label>
+            <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
+            <config_path>payment/asiabill_card/allowspecific</config_path>
+        </field>
+
+        <field id="specificcountry" translate="label" type="multiselect"  showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Payment from Specific Countries</label>
+            <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+            <config_path>payment/asiabill_card/specificcountry</config_path>
+            <depends>
+                <field id="allowspecific" separator=",">1</field>
+            </depends>
+        </field>
+
+        <field id="sort_order" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Sort Order</label>
+            <config_path>payment/asiabill_card/sort_order</config_path>
+        </field>
+
+    </group>
+</include>

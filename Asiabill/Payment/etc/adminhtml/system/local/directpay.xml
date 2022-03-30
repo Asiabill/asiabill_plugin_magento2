@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
+    <group id="asiabill_ebanx" translate="label" type="text" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+        <label>Ebanx</label>
+
+        <field id="active" translate="label" type="select"  showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Enabled</label>
+            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            <config_path>payment/asiabill_ebanx/active</config_path>
+        </field>
+
+        <field id="title" translate="label" type="text"  showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Title</label>
+            <config_path>payment/asiabill_ebanx/title</config_path>
+        </field>
+
+        <field id="mer_no" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Mer No</label>
+            <config_path>payment/asiabill_ebanx/mer_no</config_path>
+        </field>
+
+        <field id="gateway_no" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Gateway No</label>
+            <config_path>payment/asiabill_ebanx/gateway_no</config_path>
+        </field>
+
+        <field id="sign_key" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Sign Key</label>
+            <config_path>payment/asiabill_ebanx/sign_key</config_path>
+        </field>
+
+        <field id="allowspecific" translate="label" type="allowspecific" showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Payment from Applicable Countries</label>
+            <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
+            <config_path>payment/asiabill_ebanx/allowspecific</config_path>
+        </field>
+
+        <field id="specificcountry" translate="label" type="multiselect"  showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Payment from Specific Countries</label>
+            <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+            <config_path>payment/asiabill_ebanx/specificcountry</config_path>
+            <depends>
+                <field id="allowspecific" separator=",">1</field>
+            </depends>
+        </field>
+
+        <field id="sort_order" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Sort Order</label>
+            <config_path>payment/asiabill_ebanx/sort_order</config_path>
+        </field>
+
+    </group>
+</include>

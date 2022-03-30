@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
+    <group id="asiabill_setting" translate="label" type="text"  showInDefault="1" showInWebsite="1" showInStore="1">
+        <label>Basic Setting</label>
+
+        <field id="version" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Version</label>
+            <frontend_model>Asiabill\Payment\Model\Source\Version</frontend_model>
+        </field>
+
+        <field id="asiabill_mode" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Mode</label>
+            <source_model>Asiabill\Payment\Model\Option\Mode</source_model>
+            <config_path>payment/asiabill_card/asiabill_mode</config_path>
+        </field>
+
+        <field id="test_mer_no" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Test Mer No</label>
+            <config_path>payment/asiabill_card/test_mer_no</config_path>
+            <depends>
+                <field id="asiabill_mode" separator=",">0</field>
+            </depends>
+        </field>
+
+        <field id="test_gateway_no" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Test Gateway No</label>
+            <config_path>payment/asiabill_card/test_gateway_no</config_path>
+            <depends>
+                <field id="asiabill_mode" separator=",">0</field>
+            </depends>
+        </field>
+
+        <field id="test_sign_key" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Test Sign Key</label>
+            <config_path>payment/asiabill_card/test_sign_key</config_path>
+            <depends>
+                <field id="asiabill_mode" separator=",">0</field>
+            </depends>
+        </field>
+
+
+        <field id="icons_location" translate="label" type="select"  showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Icons Location</label>
+            <source_model>Asiabill\Payment\Model\Option\IconsLocation</source_model>
+            <config_path>payment/asiabill_card/icons_location</config_path>
+        </field>
+
+        <field id="start_log" translate="label" type="select"  showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Start Log</label>
+            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            <config_path>payment/asiabill_card/start_log</config_path>
+        </field>
+
+
+        <field id="success_order_status" translate="label" type="select"  showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Success Order</label>
+            <source_model>Magento\Sales\Model\Config\Source\Order\Status</source_model>
+            <config_path>payment/asiabill_card/success_order_status</config_path>
+        </field>
+
+        <field id="failure_order_status" translate="label" type="select"  showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Failure Order</label>
+            <source_model>Magento\Sales\Model\Config\Source\Order\Status</source_model>
+            <config_path>payment/asiabill_card/failure_order_status</config_path>
+        </field>
+
+        <field id="pending_order_status" translate="label" type="select"  showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Outstanding Order</label>
+            <source_model>Magento\Sales\Model\Config\Source\Order\Status</source_model>
+            <config_path>payment/asiabill_card/pending_order_status</config_path>
+        </field>
+
+        <field id="webhook" translate="label" type="select"  showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Webhook</label>
+            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            <config_path>payment/asiabill_card/webhook</config_path>
+        </field>
+
+        <field id="webhookUrl"  type="text"  showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Webhook URL</label>
+            <frontend_model>Asiabill\Payment\Model\Source\WebhookComment</frontend_model>
+        </field>
+    </group>
+</include>
