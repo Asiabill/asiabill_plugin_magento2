@@ -6,7 +6,7 @@ class PaymentMethod extends \Magento\Payment\Model\Method\AbstractMethod
 {
 
     public static $name = "Magento2";
-    public static $version = "2.1.1";
+    public static $version = "2.1.2";
 
     /**
      * Payment code
@@ -44,6 +44,7 @@ class PaymentMethod extends \Magento\Payment\Model\Method\AbstractMethod
     protected $_messageManager;
     protected $_quoteManagement;
     protected $_quoteRepository;
+    protected $_invoiceSender;
 
     protected $_paymentHelper;
     protected $_paymentLogger;
@@ -75,6 +76,7 @@ class PaymentMethod extends \Magento\Payment\Model\Method\AbstractMethod
         \Magento\Payment\Helper\Data $paymentData,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         \Magento\Payment\Model\Method\Logger $logger,
+        \Magento\Sales\Model\Order\Email\Sender\InvoiceSender $invoiceSender,
         \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
         \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null
     ) {
@@ -100,6 +102,7 @@ class PaymentMethod extends \Magento\Payment\Model\Method\AbstractMethod
         $this->_paymentHelper = $paymentHelper;
         $this->_paymentLogger = $paymentLogger;
         $this->_paymentApi = $paymentApi;
+        $this->_invoiceSender = $invoiceSender;
         $this->_paymentLogger->startLogger($this->getBasicConfigData('start_log'));
 
     }
@@ -503,16 +506,30 @@ class PaymentMethod extends \Magento\Payment\Model\Method\AbstractMethod
                 $invoice->register();
                 $invoice->save();
                 $order->addRelatedObject($invoice);
+
+                try{
+                    // 发送账单邮件
+                    $this->_invoiceSender->send($invoice);
+                }catch (\Exception $e){
+                    $this->_paymentLogger->addLog('invoice email err: '.$e->getMessage());
+                }
+
+
             }else{
                 $this->_paymentLogger->addLog('['. $data['orderNo'] .'] Cannot create an invoice without products');
             }
 
-            //发送邮件
-            try{
-                $this->_orderSender->send($order);
-            }catch (\Exception $e){
-                $this->_paymentLogger->addLog('['. $data['orderNo'] .'] '.$e->getMessage());
+
+            // 判断系统是否已经发送确认邮件，如果未发送则执行发送
+            if( empty( $order->getEmailSent() ) ){
+                //发送订单确认邮件
+                try{
+                    $this->_orderSender->send($order);
+                }catch (\Exception $e){
+                    $this->_paymentLogger->addLog('order email err: '.$e->getMessage());
+                }
             }
+
         }
 
         $order->save();
