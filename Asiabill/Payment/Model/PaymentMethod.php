@@ -276,8 +276,8 @@ class PaymentMethod extends \Magento\Payment\Model\Method\AbstractMethod
             }
             $goods_detail_2[] = [
                 'goodstitle' => htmlspecialchars($item->getName()),
-                'goodscount' => $item->getPrice(),
-                'goodsprice' => (int)$item->getQtyOrdered()
+                'goodscount' => (int)$item->getQtyOrdered(),
+                'goodsprice' => $item->getPrice()
             ];
             $i++;
         }
