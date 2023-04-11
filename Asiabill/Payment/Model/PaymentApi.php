@@ -26,7 +26,11 @@ class PaymentApi extends \Magento\Framework\HTTP\Client\Curl
 
     public function getRefundUrl($model = '0')
     {
-        return self::DOMAIN.':/servlet/'.($model=='0'?'Test':'').'ApplyRefund/V2';
+        if($model == 0){
+            return 'https://aci-test.asiabill.com/ACI/servlet/ApplyRefund/V2';
+        }
+
+        return 'https://api.asiabill.com/servlet/ApplyRefund/V2';
     }
 
     public function requestRefund($model,$params)
@@ -51,6 +55,7 @@ class PaymentApi extends \Magento\Framework\HTTP\Client\Curl
 
     public function makeRequest($uri,$params,$method = 'POST')
     {
+
         $this->_ch = curl_init();
         $this->curlOption(CURLOPT_PROTOCOLS, CURLPROTO_HTTP | CURLPROTO_HTTPS | CURLPROTO_FTP | CURLPROTO_FTPS);
         $this->curlOption(CURLOPT_URL, $uri);

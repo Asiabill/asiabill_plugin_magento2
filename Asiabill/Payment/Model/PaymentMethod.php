@@ -6,7 +6,7 @@ class PaymentMethod extends \Magento\Payment\Model\Method\AbstractMethod
 {
 
     public static $name = "Magento2";
-    public static $version = "2.1.2";
+    public static $version = "2.1.3";
 
     /**
      * Payment code
@@ -38,6 +38,7 @@ class PaymentMethod extends \Magento\Payment\Model\Method\AbstractMethod
     protected $_cookieMetadataFactory;
     protected $_orderFactory;
     protected $_order;
+    protected $_cart;
     protected $_managerInterface;
     protected $_orderSender;
     protected $_priceCurrency;
@@ -59,16 +60,14 @@ class PaymentMethod extends \Magento\Payment\Model\Method\AbstractMethod
         \Magento\Sales\Model\OrderFactory $orderFactory,
         \Magento\Framework\Message\ManagerInterface $managerInterface,
         \Magento\Sales\Model\Order\Email\Sender\OrderSender $orderSender,
+        \Magento\Checkout\Model\Cart $cart,
         \Magento\Directory\Model\PriceCurrency $priceCurrency,
         \Magento\Framework\Message\ManagerInterface $messageManager,
         \Magento\Quote\Model\QuoteManagement $quoteManagement,
         \Magento\Quote\Api\CartRepositoryInterface $quoteRepository,
-
         \Asiabill\Payment\Model\PaymentHelper $paymentHelper,
         \Asiabill\Payment\Model\Paymentlogger $paymentLogger,
         \Asiabill\Payment\Model\PaymentApi $paymentApi,
-
-
         \Magento\Framework\Model\Context $context,
         \Magento\Framework\Registry $registry,
         \Magento\Framework\Api\ExtensionAttributesFactory $extensionFactory,
@@ -99,6 +98,7 @@ class PaymentMethod extends \Magento\Payment\Model\Method\AbstractMethod
         $this->_messageManager = $messageManager;
         $this->_quoteManagement = $quoteManagement;
         $this->_quoteRepository = $quoteRepository;
+        $this->_cart = $cart;
         $this->_paymentHelper = $paymentHelper;
         $this->_paymentLogger = $paymentLogger;
         $this->_paymentApi = $paymentApi;
@@ -137,8 +137,8 @@ class PaymentMethod extends \Magento\Payment\Model\Method\AbstractMethod
             $orderAmount = $this->_priceCurrency->roundPrice($order->getGrandTotal()); // 交易金额
 
             $refundData = [
-                'merNo' => $this->getConfigData('mer_no'),
-                'gatewayNo' => $this->getConfigData('gateway_no'),
+                'merNo' => $this->getConfigData(($this->_mode=='0'?'test_':'').'mer_no'),
+                'gatewayNo' => $this->getConfigData(($this->_mode=='0'?'test_':'').'gateway_no'),
                 'tradeNo' => $invoice->getTransactionId(),
                 'refundType' => $refundAmount == $orderAmount ? 1 : 2,
                 'tradeAmount' => $orderAmount,
@@ -154,8 +154,6 @@ class PaymentMethod extends \Magento\Payment\Model\Method\AbstractMethod
             $this->_paymentLogger->addLog('refund data: '.json_encode($refundData));
 
             $result = $this->_paymentApi->requestRefund($this->_mode,$refundData);
-
-
 
             if( empty($result['error']) ){
                 $xml = $result['body'];

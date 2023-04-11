@@ -53,6 +53,16 @@
             <config_path>payment/asiabill_card/card_icons</config_path>
         </field>
 
+        <field id="mini_total" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Minimum order Total</label>
+            <config_path>payment/asiabill_card/mini_total</config_path>
+        </field>
+
+        <field id="max_total" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Maximum order Total</label>
+            <config_path>payment/asiabill_card/max_total</config_path>
+        </field>
+
         <field id="allowspecific" translate="label" type="allowspecific" showInDefault="1" showInWebsite="1" showInStore="0">
             <label>Payment from Applicable Countries</label>
             <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>

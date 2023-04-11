@@ -18,6 +18,25 @@ class Card extends \Asiabill\Payment\Model\PaymentMethod
     protected $_canCapturePartial = false;
     protected $_canCaptureOnce = false;
 
+    public function isAvailable(\Magento\Quote\Api\Data\CartInterface $quote = null)
+    {
+
+        $base_total = ($this->_cart->getQuote()->getBaseGrandTotal());
+
+        $mini_total = $this->getConfigData('mini_total');
+        if( !empty($mini_total) && $base_total < $mini_total ){
+            return false;
+        }
+
+        $max_total = $this->getConfigData('max_total');
+        if( !empty($max_total) && $base_total > $max_total ){
+            return false;
+        }
+
+        return parent::isAvailable($quote);
+    }
+
+
     public function getToken()
     {
 
